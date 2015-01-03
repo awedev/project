@@ -12,27 +12,47 @@ class CreateAttachmentsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('attachments', function($table)
-        {
+		Schema::create('photo', function($table)
+        	{
 			$table->engine = 'InnoDB';
-	        $table->increments('id');
+		        $table->increments('id');
 			$table->integer('user_id')->unsigned()->index();
-			$table->string('name');
-			$table->string('type');
-			$table->string('size');
-			$table->string('extension');
+			$table->string('photo_file_name');
+			$table->string('photo_file_size');
+			$table->string('photo_content_type');
 			$table->string('hash');
 			$table->tinyInteger('private')->default('0');
 			$table->tinyInteger('attach_status')->default('0');
-			$table->string('save_path')->nullable()->default(null);
-			$table->string('save_name')->nullable()->default(null);
+			$table->string('path')->nullable()->default(null);
+			$table->string('url')->nullable()->default(null);
+			$table->string('originalFilename')->nullable()->default(null);
+			$table->string('size')->nullable()->default(null);
 			$table->tinyInteger('save_domain')->default('0');
 			$table->tinyInteger('client_type')->default('0');
-			$table->integer('width')->default('0');
-			$table->integer('height')->default('0');
-			$table->timestamps();
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+			$table->timestamp('photo_updated_at');
 		});
+
+		Schema::create('avatar', function($table)
+                {
+                        $table->engine = 'InnoDB';
+                        $table->increments('id');
+                        $table->integer('user_id')->unsigned()->index();
+                        $table->string('avatar_file_name');
+                        $table->string('avatar_file_size');
+                        $table->string('avatar_content_type');
+                        $table->string('hash');
+                        $table->tinyInteger('private')->default('0');
+                        $table->tinyInteger('attach_status')->default('0');
+                        $table->string('path')->nullable()->default(null);
+                        $table->string('url')->nullable()->default(null);
+                        $table->string('originalFilename')->nullable()->default(null);
+                        $table->string('size')->nullable()->default(null);
+                        $table->tinyInteger('save_domain')->default('0');
+                        $table->tinyInteger('client_type')->default('0');
+                        $table->timestamp('avatar_updated_at');
+                        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+                });
+
 	}
 
 	/**
@@ -42,7 +62,8 @@ class CreateAttachmentsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('attachments');
+		Schema::drop('photo');
+		Schema::drop('avatar');
 	}
 
 }

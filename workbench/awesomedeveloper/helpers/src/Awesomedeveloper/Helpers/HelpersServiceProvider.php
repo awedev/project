@@ -1,8 +1,9 @@
-<?php namespace Awesomedeveloper\Uploader;
+<?php namespace Awesomedeveloper\Helpers;
 
 use Illuminate\Support\ServiceProvider;
+use Awesomedeveloper\Helpers;
 
-class UploaderServiceProvider extends ServiceProvider {
+class HelpersServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,7 +19,7 @@ class UploaderServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('awesomedeveloper/uploader');
+		$this->package('awesomedeveloper/helpers');
 	}
 
 	/**
@@ -28,9 +29,9 @@ class UploaderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
-	}
+		$this->registerHelper();
 
+	}
 	/**
 	 * Get the services provided by the provider.
 	 *
@@ -40,5 +41,15 @@ class UploaderServiceProvider extends ServiceProvider {
 	{
 		return array();
 	}
-
+	/**
+	 * Register Helper
+	 *
+	 * @return void
+	 */
+	public function registerHelper(){
+		$this->app->bind('helper', function()
+		{
+			return new Helper;
+		});
+	}
 }

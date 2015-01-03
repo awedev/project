@@ -1,0 +1,79 @@
+<?php
+
+return array(
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application Tracing Setting
+	|--------------------------------------------------------------------------
+	|
+	| When your application is in debug mode, detailed error messages with
+	| stack traces will be shown on every error that occurs within your
+	| application. If disabled, a simple generic error page is shown.
+	|
+	*/
+
+	'tracing_enabled'=> false,
+    'tracing_format' => '<font size="3" color="red"> Tracing Message : %s </font>',
+
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application Message Setting
+	|--------------------------------------------------------------------------
+	|
+	| When your application is in debug mode, detailed error messages with
+	| stack traces will be shown on every error that occurs within your
+	| application. If disabled, a simple generic error page is shown.
+	|
+	*/
+
+	'message_info'   =>"<div class=\"alert alert-info\" role=\"alert\">%s</div>",
+	'message_success'=>"<div class=\"alert alert-success\" role=\"alert\">%s<div>",
+	'message_warning'=>"<div class=\"alert alert-warning\" role=\"alert\">%s</div>",
+	'message_danger' =>"<div class=\"alert alert-danger\" role=\"alert\">%s</div>",
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application URL
+	|--------------------------------------------------------------------------
+	|
+	| This URL is used by the console to properly generate URLs when using
+	| the Artisan command line tool. You should set this to the root of
+	| your application so that it is used when running Artisan tasks.
+	|
+	*/
+
+	'url' => 'http://localhost',
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application Timezone
+	|--------------------------------------------------------------------------
+	|
+	| Here you may specify the default timezone for your application, which
+	| will be used by the PHP date and date-time functions. We have gone
+	| ahead and set this to a sensible default for you out of the box.
+	|
+	*/
+
+	'timezone' => 'UTC',
+
+	/*
+	|--------------------------------------------------------------------------
+	| Application Locale Configuration
+	|--------------------------------------------------------------------------
+	|
+	| The application locale determines the default locale that will be used
+	| by the translation service provider. You are free to set this value
+	| to any of the locales which will be supported by the application.
+	|
+	*/
+
+	'locale' => 'ch',
+
+
+
+    'available_language' => array('en', 'pt', 'es', 'ch'),
+
+);

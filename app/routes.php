@@ -18,6 +18,7 @@
 Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('role', 'Role');
+Route::model('apiaccount', 'ApiAccount');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -87,3 +88,10 @@ Route::get('contact-us', function()
 
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'UserController@getIndex'));
+
+
+Route::group(array('before' => 'auth'), function()
+{
+    # Api Management
+    Route::resource('api/apiaccount', 'ApiAccountController');
+});

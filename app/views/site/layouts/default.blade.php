@@ -26,7 +26,7 @@
 		================================================== -->
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{asset('bootstrap/css/bootstrap-theme.min.css')}}">
-
+		<link href="{{asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
 		<style>
         body {
             padding: 60px 0;
@@ -65,16 +65,24 @@
                 </div>
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav">
-						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">Home</a></li>
+						<li {{ (Request::is('/') ? ' class="active"' : '') }}><a href="{{{ URL::to('') }}}">主页</a></li>
 					</ul>
 
                     <ul class="nav navbar-nav pull-right">
                         @if (Auth::check())
                         @if (Auth::user()->hasRole('admin'))
-                        <li><a href="{{{ URL::to('admin') }}}">Admin Panel</a></li>
+                        <li><a href="{{{ URL::to('admin') }}}">管理员后台</a></li>
                         @endif
-                        <li><a href="{{{ URL::to('user') }}}">Logged in as {{{ Auth::user()->username }}}</a></li>
-                        <li><a href="{{{ URL::to('user/logout') }}}">Logout</a></li>
+                        @if (date('H:i')>='5:00' && date('H:i')<='12:00')
+                        <li><a href="{{{ URL::to('user') }}}"> {{{ Auth::user()->username }}} , 早上好!</a></li>
+                        @elseif (date('H:i')>'12:00' && date('H:i')<'18:00')
+                        <li><a href="{{{ URL::to('user') }}}"> {{{ Auth::user()->username }}} , 下午好!</a></li>
+                        @elseif (date('H:i')>='18:00' && date('H:i')<='22:00')
+                        <li><a href="{{{ URL::to('user') }}}"> {{{ Auth::user()->username }}} , 晚上好! </a></li>
+                        @else
+                        <li><a href="{{{ URL::to('user') }}}"> {{{ Auth::user()->username }}} , 夜已深 早点休息!</a></li>
+                        @endif
+                        <li><a href="{{{ URL::to('user/logout') }}}">安全退出</a></li>
                         @else
                         <li {{ (Request::is('user/login') ? ' class="active"' : '') }}><a href="{{{ URL::to('user/login') }}}">Login</a></li>
                         <li {{ (Request::is('user/create') ? ' class="active"' : '') }}><a href="{{{ URL::to('user/create') }}}">{{{ Lang::get('site.sign_up') }}}</a></li>

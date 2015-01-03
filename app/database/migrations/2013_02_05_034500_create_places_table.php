@@ -20,6 +20,7 @@ class CreatePlacesTable extends Migration {
 			$table->integer('owner_id')->unsigned()->index();
 			$table->string('title');
 			$table->string('hours');
+			$table->tinyInteger('rate');
 			$table->integer('place_type')->default('0');
 			$table->string('description')->nullable()->default(null);
 			$table->string('keywords')->nullable()->default(null);	

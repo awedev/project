@@ -1,5 +1,5 @@
 {
-    "name": "awesomedeveloper/uploader",
+    "name": "awesomedeveloper/helpers",
     "description": "",
     "authors": [
         {
@@ -16,7 +16,7 @@
             "src/migrations"
         ],
         "psr-0": {
-            "Awesomedeveloper\\Uploader\\": "src/"
+            "Awesomedeveloper\\Helpers\\": "src/"
         }
     },
     "minimum-stability": "stable"
