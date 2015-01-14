@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'tracing_enabled'=> false,
+	'tracing_enabled'=> true,
     'tracing_format' => '<font size="3" color="red"> Tracing Message : %s </font>',
 
 

@@ -1,35 +1,35 @@
 <?php
 
-class ApiAccountController extends BaseController {
-	protected $apiAccount = null;
+class ApiController extends BaseController {
+	protected $api = null;
 
-	public function __construct(ApiAccount $apiAccount){
+	public function __construct(Api $api){
 		parent::__construct();
-		$this->apiAccount = $apiAccount;
+		$this->api = $api;
 	}
 	/**
 	 * Display a listing of the resource.
-	 * GET /api/apiaccount
+	 * GET /api
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return View::make('site/api/apiaccount/index')->with('apiAccounts', ApiAccount::where('uid', '=', Auth::id())->orderBy('created_at', 'desc')->get());
+		return View::make('site/api/index')->with('apis', Api::where('uid', '=', Auth::id())->orderBy('created_at', 'desc')->get());
 	}
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /api/apiaccount/create
+	 * GET /api/create
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		return View::make('site/api/apiaccount/create');
+		return View::make('site/api/create');
 	}
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /api/apiaccount
+	 * POST /api
 	 *
 	 * @return Response
 	 */
@@ -38,15 +38,15 @@ class ApiAccountController extends BaseController {
 		$message = '';
 		$uid = Auth::id();
 		$apiKey = Hash::make(Input::get('project_name') + Input::get('email'));
-		$this->apiAccount->uid = $uid;
-		$this->apiAccount->api_key = $apiKey;
-		if($this->apiAccount->save()){
+		$this->api->uid = $uid;
+		$this->api->api_key = $apiKey;
+		if($this->api->save()){
 			$message = Helper::createMessage('info', Lang::get('message.save_success'));
 		}else{
 			$message = Helper::createMessage('warning', Lang::get('message.save_fail'));
 		} 
 		Session::flash('message', $message);
-		return Redirect::to('api/apiaccount');
+		return Redirect::to('api');
 	}
 	// /**
 	//  * Display the specified resource.
@@ -85,7 +85,7 @@ class ApiAccountController extends BaseController {
 	// }
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /api/apiaccount/{id}
+	 * DELETE /api/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -93,14 +93,14 @@ class ApiAccountController extends BaseController {
 	public function destroy($id)
 	{
 		if(isset($id->id)){
-			$this->apiAccount = ApiAccount::find($id->id);
-			if($this->apiAccount->delete()){
+			$this->api = Api::find($id->id);
+			if($this->api->delete()){
 				$message = Helper::createMessage('info', Lang::get('message.delete_success'));
 			}else{
 				$message = Helper::createMessage('info', Lang::get('message.delete_fail'));
 			}
 			Session::flash('message', $message);
-			return Redirect::to('api/apiaccount');
+			return Redirect::to('api');
 		}
 	}
 }

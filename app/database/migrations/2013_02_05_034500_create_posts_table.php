@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePlacesTable extends Migration {
+class CreatePostsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreatePlacesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('places', function($table)
+		Schema::create('posts', function($table)
         {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
@@ -21,7 +21,7 @@ class CreatePlacesTable extends Migration {
 			$table->string('title');
 			$table->string('hours');
 			$table->tinyInteger('rate');
-			$table->integer('place_type')->default('0');
+			$table->integer('post_category')->default('0');
 			$table->string('description')->nullable()->default(null);
 			$table->string('keywords')->nullable()->default(null);	
 			$table->integer('view_num')->default('0');
@@ -30,7 +30,7 @@ class CreatePlacesTable extends Migration {
 			$table->integer('cover_id')->default('0');
 			$table->integer('position_id')->default('0');
 			$table->integer('dealine')->default('0');	
-			$table->tinyInteger('place_status')->default('0');
+			$table->tinyInteger('post_status')->default('0');
 			$table->tinyInteger('is_certified')->default('0');
 			$table->text('content')->default(null);
 			$table->text('extend')->nullable()->default(null);
@@ -50,7 +50,7 @@ class CreatePlacesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('places');
+		Schema::drop('posts');
 	}
 
 }

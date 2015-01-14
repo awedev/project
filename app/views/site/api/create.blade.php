@@ -1,17 +1,20 @@
-@extends('site.layouts.default')
+@extends('site.layouts.site')
 
 {{-- Web site Title --}}
 @section('title')
-{{{ Lang::get('api/apiaccount.create_page_title') }}} ::
+{{{ Lang::get('api/api.create_page_title') }}} ::
 @parent
 @stop
 
+@section('header_title')
+{{{ Lang::get('api/api.create_page_title') }}}
+@stop
 {{-- Content --}}
 @section('content')
 <div class="page-header">
-	<h1> {{{ Lang::get('api/apiaccount.create_page_title') }}} </h1>
+	<h1> {{{ Lang::get('api/api.create_page_title') }}} </h1>
 </div>
-<form class="form-horizontal" method="POST" action="{{ URL::to('api/apiaccount') }}" accept-charset="UTF-8">
+<form class="form-horizontal" method="POST" action="{{ URL::to('api') }}" accept-charset="UTF-8">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <fieldset>
         <div class="form-group">

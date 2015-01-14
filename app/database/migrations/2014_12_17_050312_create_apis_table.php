@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApiAccountsTable extends Migration {
+class CreateApisTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateApiAccountsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('api_accounts', function($table)
+		Schema::create('apis', function($table)
         {
 			$table->engine = 'InnoDB';
 			$table->increments('id');
@@ -31,7 +31,7 @@ class CreateApiAccountsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('api_accounts');
+		Schema::drop('apis');
 	}
 
 }

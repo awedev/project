@@ -1,21 +1,21 @@
 <?php
 
-class AdminDashboardController extends BaseController {
+class PostController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
-	 * GET /admin/admindashboard
+	 * GET /post
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		return View::make('admin/dashboard');
+		
 	}
 
 	/**
 	 * Show the form for creating a new resource.
-	 * GET /admin/admindashboard/create
+	 * GET /post/create
 	 *
 	 * @return Response
 	 */
@@ -26,7 +26,7 @@ class AdminDashboardController extends BaseController {
 
 	/**
 	 * Store a newly created resource in storage.
-	 * POST /admin/admindashboard
+	 * POST /post
 	 *
 	 * @return Response
 	 */
@@ -37,7 +37,7 @@ class AdminDashboardController extends BaseController {
 
 	/**
 	 * Display the specified resource.
-	 * GET /admin/admindashboard/{id}
+	 * GET /post/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -49,7 +49,7 @@ class AdminDashboardController extends BaseController {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * GET /admin/admindashboard/{id}/edit
+	 * GET /post/{id}/edit
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -61,7 +61,7 @@ class AdminDashboardController extends BaseController {
 
 	/**
 	 * Update the specified resource in storage.
-	 * PUT /admin/admindashboard/{id}
+	 * PUT /post/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -73,7 +73,7 @@ class AdminDashboardController extends BaseController {
 
 	/**
 	 * Remove the specified resource from storage.
-	 * DELETE /admin/admindashboard/{id}
+	 * DELETE /post/{id}
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -83,8 +83,16 @@ class AdminDashboardController extends BaseController {
 		//
 	}
 
-	public function system(){
-
-		return View::make('admin/system');
+	public function search($city, $category, $sort, $distance){
+		Helper::addTracing('search@Post Entered');
+		try{
+			Helper::addTracing('$city='.$city.'&$category='.$type.'&$sort='.$order.'&$distance='.$distance);
+			$posts = DB::select(Sort::findOrFail($order)->query, array($city, $category, $distance));
+		}catch(Exception $e){
+			Helper::addTracing('Ex: '.$e->getMessage());
+		}
+		Helper::addTracing('search@Post Returned');
+		return View::make('site/post/index')->with('posts', $posts);
 	}
+
 }

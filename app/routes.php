@@ -18,7 +18,8 @@
 Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('role', 'Role');
-Route::model('apiaccount', 'ApiAccount');
+Route::model('api', 'Api');
+Route::model('post', 'Post');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -52,7 +53,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::controller('roles', 'AdminRolesController');
 
     # Admin Dashboard
-    Route::controller('/', 'AdminDashboardController');
+    Route::resource('/', 'AdminDashboardController');
+    Route::get('system', 'AdminDashboardController@system');
 });
 
 
@@ -92,6 +94,9 @@ Route::get('/', array('before' => 'detectLang','uses' => 'UserController@getInde
 
 Route::group(array('before' => 'auth'), function()
 {
-    # Api Management
-    Route::resource('api/apiaccount', 'ApiAccountController');
+    # Api
+    Route::resource('api', 'ApiController');
+    # place 
+    Route::resource('post', 'PostController');
+    Route::get('search/{city}/{category}/{sort}/{distance}', 'PostController@search');
 });

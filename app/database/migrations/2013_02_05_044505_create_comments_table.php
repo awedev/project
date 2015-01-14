@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration {
 	        $table->engine = 'InnoDB';
 			$table->increments('id')->unsigned();
 			$table->integer('model_id')->unsigned()->default('0');
-			$table->integer('place_id')->unsigned()->index();
+			$table->integer('post_id')->unsigned()->index();
 	        $table->integer('author_id')->unsigned()->index();
 	        $table->integer('commenter_id')->unsigned();
         	$table->integer('to_uid')->unsigned();
@@ -33,7 +33,7 @@ class CreateCommentsTable extends Migration {
 			$table->text('extend')->default(null);
 			$table->timestamps();
 			$table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
-			$table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
+			$table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
 		});
 	}
 
