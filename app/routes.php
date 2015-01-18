@@ -98,5 +98,7 @@ Route::group(array('before' => 'auth'), function()
     Route::resource('api', 'ApiController');
     # place 
     Route::resource('post', 'PostController');
+    # Messenger
+    Route::resource('messenger', 'MessengerController');
     Route::get('search/{city}/{category}/{sort}/{distance}', 'PostController@search');
 });

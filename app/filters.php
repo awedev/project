@@ -118,7 +118,9 @@ Route::filter('detectLang',  function($route, $request, $lang = 'auto')
         $browser_lang = !empty($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? strtok(strip_tags($_SERVER['HTTP_ACCEPT_LANGUAGE']), ',') : '';
         $browser_lang = substr($browser_lang, 0,2);
         $userLang = (in_array($browser_lang, Config::get('app.available_language'))) ? $browser_lang : Config::get('app.locale');
-        Config::set('app.locale', $userLang);
-        App::setLocale($userLang);
+        //Config::set('app.locale', $userLang);
+        //App::setLocale($userLang);
+        Config::set('app.locale', 'zh_CN');
+        App::setLocale('zh_CN');
     }
 });

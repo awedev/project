@@ -1,8 +1,8 @@
-@extends('site.layouts.default')
+@extends('site.layouts.site')
 
 {{-- Web site Title --}}
 @section('title')
-{{{ Lang::get('user/user.settings') }}} ::
+{{{ Lang::get('title.profile') }}} ::
 @parent
 @stop
 
@@ -16,9 +16,19 @@ body {
 
 {{-- Content --}}
 @section('content')
-<div class="page-header">
-	<h3>Edit your settings</h3>
-</div>
+<aside class="right-side">
+<section class="content-header">
+    <h1>
+        {{{ Lang::get('title.profile') }}}
+        <small>it all starts here</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> {{{ Lang::get('title.home') }}}</a></li>
+        <li><a href="#">{{{ Lang::get('title.settings') }}}</a></li>
+        <li class="active">{{{ Lang::get('title.profile') }}}</li>
+    </ol>
+</section>
+<section class="content-header">
 <form class="form-horizontal" method="post" action="{{ URL::to('user/' . $user->id . '/edit') }}"  autocomplete="off">
     <!-- CSRF Token -->
     <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
@@ -75,5 +85,6 @@ body {
     </div>
     <!-- ./ form actions -->
 </form>
-</form>
+</section>
+</aside>
 @stop

@@ -27,11 +27,34 @@ return array(
 	| application. If disabled, a simple generic error page is shown.
 	|
 	*/
-
-	'message_info'   =>"<div class=\"alert alert-info\" role=\"alert\">%s</div>",
-	'message_success'=>"<div class=\"alert alert-success\" role=\"alert\">%s<div>",
-	'message_warning'=>"<div class=\"alert alert-warning\" role=\"alert\">%s</div>",
-	'message_danger' =>"<div class=\"alert alert-danger\" role=\"alert\">%s</div>",
+	'message_info'   =>"
+			<div class=\"alert alert-info alert-dismissable\">
+			    <i class=\"fa fa-info\"></i>
+			    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+			    <b>%s</b>
+			</div>
+	",
+	'message_success'=>"
+			 <div class=\"alert alert-success alert-dismissable\">
+			    <i class=\"fa fa-check\"></i>
+			    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+			    <b>%s</b>
+			</div>
+	",
+	'message_warning'=>"
+			 <div class=\"alert alert-warning alert-dismissable\">
+			    <i class=\"fa fa-warning\"></i>
+			    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+			    <b>%s</b>
+			</div>
+	",
+	'message_danger' =>"
+			 <div class=\"alert alert-danger alert-dismissable\">
+			    <i class=\"fa fa-ban\"></i>
+			    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">&times;</button>
+			    <b>%s</b>
+			</div>
+	",
 
 	/*
 	|--------------------------------------------------------------------------

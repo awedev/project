@@ -113,11 +113,13 @@ return array(
         'Zizaco\Confide\ConfideServiceProvider', // Confide Provider
         'Zizaco\Entrust\EntrustServiceProvider', // Entrust Provider for roles
         'Bllim\Datatables\DatatablesServiceProvider', // Datatables
-
+        'Codesleeve\LaravelStapler\LaravelStaplerServiceProvider', //Uploader Helper
+		'Cmgmyr\Messenger\MessengerServiceProvider', //Message Package
         /* Uncomment for use in development */
 //        'Way\Generators\GeneratorsServiceProvider', // Generators
 //        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider', // IDE Helpers
-
+        /* Custom Service Provider*/
+        'Awesomedeveloper\Helpers\HelpersServiceProvider',
     ),
 
     /*
@@ -192,8 +194,12 @@ return array(
         'Carbon'          => 'Carbon\Carbon', // Carbon
         'Datatables'      => 'Bllim\Datatables\Datatables', // DataTables
 
+        /* Aliases for Utility*/
+        // 'Common'          => 'Utility\Common', //Helper functions
+        // 'Upload'		  => 'Utility\Upload',
+		'Helper'		  => 'Awesomedeveloper\Helpers\HelperFacade',
     ),
 
-    'available_language' => array('en', 'pt', 'es'),
+    'available_language' => array('en', 'pt', 'es', 'zh_CN'),
 
 );

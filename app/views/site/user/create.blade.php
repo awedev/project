@@ -12,68 +12,52 @@
 
 {{-- Content --}}
 @section('content')
-<div class="account-container register">
-	<div class="content clearfix">
-		<form method="POST" action="{{{ (Confide::checkAction('UserController@store')) ?: URL::to('user')  }}}" accept-charset="UTF-8">
-			<h1>Signup for Free Account</h1>			
-			
-			<div class="login-fields">
-				
-				<p>{{{ Lang::get('user/user.signup_detail') }}}</p>
-				
-				<div class="field">
-					<label for="username">{{{ Lang::get('confide::confide.username') }}}</label>
-            		<input class="login" placeholder="{{{ Lang::get('confide::confide.username') }}}" type="text" name="username" id="username" value="{{{ Input::old('username') }}}">
-				</div> <!-- /field -->
-				
-				<div class="field">
-					<label for="email">{{{ Lang::get('confide::confide.e_mail') }}} <small>{{ Lang::get('confide::confide.signup.confirmation_required') }}</small></label>
-            		<input class="login" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
-				</div> <!-- /field -->
-				
-				<div class="field">
-					 <label for="password">{{{ Lang::get('confide::confide.password') }}}</label>
-            		<input class="login" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
-				</div> <!-- /field -->
-				
-				<div class="field">
-					<label for="password_confirmation">{{{ Lang::get('confide::confide.password_confirmation') }}}</label>
-            		<input class="login" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
-				</div> <!-- /field -->
-				
-			</div> <!-- /login-fields -->
-	        @if ( Session::get('error') )
-	            <div class="alert alert-error alert-danger">
-	                @if ( is_array(Session::get('error')) )
-	                    {{ head(Session::get('error')) }}
-	                @endif
-	            </div>
-	        @endif
+<div class="form-box" id="login-box">
+    <div class="header">{{{ Lang::get('user/user.register') }}}</div>
+    <form method="POST" action="{{{ (Confide::checkAction('UserController@store')) ?: URL::to('user')  }}}" accept-charset="UTF-8">
+        <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
+        <div class="body bg-gray">
+            <div class="form-group">
+                <input class="form-control" placeholder="{{{ Lang::get('confide::confide.username') }}}" type="text" name="username" id="username" value="{{{ Input::old('username') }}}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="{{{ Lang::get('confide::confide.e_mail') }}}" type="text" name="email" id="email" value="{{{ Input::old('email') }}}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password') }}}" type="password" name="password" id="password">
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="{{{ Lang::get('confide::confide.password_confirmation') }}}" type="password" name="password_confirmation" id="password_confirmation">
+            </div>
+        </div>
+        @if ( Session::get('error') )
+            <div class="alert alert-error alert-danger">
+                @if ( is_array(Session::get('error')) )
+                    {{ head(Session::get('error')) }}
+                @endif
+            </div>
+        @endif
 
-	        @if ( Session::get('notice') )
-	            <div class="alert">{{ Session::get('notice') }}</div>
-	        @endif
-			<div class="login-actions">
-				
-				<span class="login-checkbox">
-					<input id="Field" name="Field" type="checkbox" class="field login-checkbox" value="First Choice" tabindex="4" />
-					<label class="choice" for="Field">Agree with the Terms & Conditions.</label>
-				</span>
-				<button type="submit" class="button btn btn-primary btn-large">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
-				
-			</div> <!-- .actions -->
-		</form>
-		<div>
-		</div>
-	</div> <!-- /content -->
-	
-</div> <!-- /account-container -->
+        @if ( Session::get('notice') )
+            <div class="alert">{{ Session::get('notice') }}</div>
+        @endif
+        <div class="footer">
+            <input id="Field" name="Field" type="checkbox" value="First Choice" tabindex="4" />
+            <label class="choice" for="Field">Agree with the Terms & Conditions.</label>
+ 			<button type="submit" class="btn bg-olive btn-block">{{{ Lang::get('confide::confide.signup.submit') }}}</button>
+            <a class="text-center" href="{{ URL::to('user/login') }}">{{{ Lang::get('user/user.have_account') }}}{{{ Lang::get('user/user.click_to_login') }}}</a>
+        </div>
+    </form>
 
+    <div class="margin text-center">
+        <span>Register using social networks</span>
+        <br/>
+        <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+        <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+        <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
 
-<!-- Text Under Box -->
-<div class="login-extra">
-	{{{ Lang::get('user/user.have_account') }}} <a href="{{ URL::to('user/login') }}">{{{ Lang::get('user/user.click_to_login') }}}</a>
-</div> <!-- /login-extra -->
+    </div>
+</div>
 @stop
 
 @section('script')

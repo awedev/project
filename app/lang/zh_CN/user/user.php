@@ -13,6 +13,7 @@ return array(
 	'register'                      => '注册',
 	'login'                         => '登录',
 	'login_first'                   => '请先登录',
+	'logout'						=> '安全登出',
 	'account'                       => '账户',
 	'forgot_password'               => '忘记密码',
 	'settings'                      => '设置',
@@ -26,5 +27,9 @@ return array(
 	'login_detail'					=> '填写下列信息登录',
 	'signup_detail'					=> '填写下列信息注册吧:',
 	'have_account'					=> '已经有账户了?',
-	'click_to_login'				=> '点这里登录吧'
+	'click_to_login'				=> '点这里登录吧',
+	'search_site'					=> '站内搜索',
+	'sidebar_developer'				=> '开发者选项',
+	'sidebar_developer_api_create'	=> '新建API密钥',
+	'sidebar_developer_api_index'	=> '查看所有API密钥',						
 );

@@ -8,54 +8,45 @@
 
 {{-- Content --}}
 @section('content')
-<div class="account-container"> 
-    <div class="content clearfix">
-            <form class="form-horizontal" method="POST" action="{{ URL::to('user/login') }}" accept-charset="UTF-8">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <h1>{{{ Lang::get('user/user.login') }}}</h1>        
-            <div class="login-fields">
-                <p>{{{ Lang::get('user/user.login_detail') }}}</p>                
-                <div class="field">
-                    <div class="form-group">
-                    <label class="col-md-2 control-label" for="email">{{ Lang::get('confide::confide.username_e_mail') }}</label>
-                    <input class="login username-field" tabindex="1" placeholder="{{ Lang::get('confide::confide.username_e_mail') }}" type="text" name="email" id="email" value="{{ Input::old('email') }}">
-                    </div>
-                </div> <!-- /field -->                
-                <div class="field">
-                    <div class="form-group">
-                    <label class="col-md-2 control-label" for="password">{{ Lang::get('confide::confide.password') }}</label>
-                    <input class="login password-field" tabindex="2" placeholder="{{ Lang::get('confide::confide.password') }}" type="password" name="password" id="password">
-                    </div>
-                </div> <!-- /password -->               
-            </div> <!-- /login-fields --> 
-            @if ( Session::get('error') )
-            <div class="alert alert-danger">{{ Session::get('error') }}</div>
-            @endif
-            @if ( Session::get('notice') )
-            <div class="alert">{{ Session::get('notice') }}</div>
-            @endif
-            <div class="login-actions">                
+<div class="form-box" id="login-box">
+    <div class="header">{{{ Lang::get('user/user.login') }}}</div>
+    <form class="form-horizontal" method="POST" action="{{ URL::to('user/login') }}" accept-charset="UTF-8">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <div class="body bg-gray">
+            <div class="form-group">
+                <input class="form-control" tabindex="1" placeholder="{{ Lang::get('confide::confide.username_e_mail') }}" type="text" name="email" id="email" value="{{ Input::old('email') }}">
+            </div>
+            <div class="form-group">
+                <input class="form-control" tabindex="2" placeholder="{{ Lang::get('confide::confide.password') }}" type="password" name="password" id="password">
+            </div>
+            <div class="form-group">
                 <span class="login-checkbox">
                     <input type="hidden" name="remember" value="0">
                     <input tabindex="4" type="checkbox" name="remember" id="remember" value="1">
                     <label for="remember">{{ Lang::get('confide::confide.login.remember') }}</label>
                 </span> 
-                <div class="form-group">                                   
-                <button type="submit" class="button btn btn-success btn-large">{{ Lang::get('confide::confide.login.submit') }}</button>
-                </div>               
-            </div> <!-- .actions -->
-        </form>        
-    </div> <!-- /content -->    
-</div> <!-- /account-container -->
+            </div>
+        </div>
+        <div class="footer">
+            <button type="submit" class="btn bg-olive btn-block">{{ Lang::get('confide::confide.login.submit') }}</button>
 
+            <p><a href="forgot">{{ Lang::get('confide::confide.login.forgot_password') }}</a></p>
 
+            <a href="{{{ URL::to('user/create') }}}" class="text-center">{{{ Lang::get('user/user.signup_now') }}}</a>
+        </div>
+    </form>
 
-<div class="login-extra">
-    <a href="forgot">{{ Lang::get('confide::confide.login.forgot_password') }}</a>
-</div> <!-- /login-extra -->
+    <div class="margin text-center">
+        <span>Sign in using social networks</span>
+        <br/>
+        <button class="btn bg-light-blue btn-circle"><i class="fa fa-facebook"></i></button>
+        <button class="btn bg-aqua btn-circle"><i class="fa fa-twitter"></i></button>
+        <button class="btn bg-red btn-circle"><i class="fa fa-google-plus"></i></button>
 
+    </div>
+</div>
 @stop
 
 @section('script')
-<script src="{{asset('admin/js/signin.js')}}"></script>
+
 @stop
